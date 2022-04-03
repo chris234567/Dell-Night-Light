@@ -1,0 +1,1 @@
+times, color etc will be set by main gui and accesed by set day and night tasks
