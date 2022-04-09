@@ -1,19 +1,3 @@
-# get params via graphical ui
-
-# 
-
-# Anforderungen
-# - tickbox to align with local sun setting/rising time
-# - set time
-# - unset time
-# - brightness day
-# - brightness night
-# - colortemp day
-# - colortemp night
-# 
-# 
-
-
 # GUI was created at https://poshgui.com/
 
 Add-Type -AssemblyName PresentationCore, PresentationFramework
@@ -27,15 +11,15 @@ $xml.SelectNodes("//*[@Name]") | ForEach-Object { Set-Variable -Name $_.Name -Va
 
 # ---- WIP -----
 
-$XML_Node_Reader = (New-Object System.Xml.XmlNodeReader $xml)
-$xml = [Windows.Markup.XamlReader]::Load($XML_Node_Reader)
-$Btn = $xml.FindName('Btn_ConnectDialog_Connect')
-$Txt = $xml.FindName('Txt_ConnectDialog_Input')
+# $XML_Node_Reader = (New-Object System.Xml.XmlNodeReader $xml)
+# $xml = [Windows.Markup.XamlReader]::Load($XML_Node_Reader)
+# $Btn = $xml.FindName('Btn_ConnectDialog_Connect')
+# $Txt = $xml.FindName('Txt_ConnectDialog_Input')
 
 
-$Btn_ConnectDialog_Connect.Add_Click({
-    # hier könnte man das mit den lokalen zeiten implementieren und das xaml verändern
-})
+# $Btn_ConnectDialog_Connect.Add_Click({
+#     # hier könnte man das mit den lokalen zeiten implementieren und das xaml verändern
+# })
 
 # ---- WIP -----
 

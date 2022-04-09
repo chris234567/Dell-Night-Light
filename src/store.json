@@ -1,0 +1,12 @@
+{
+    "day": {
+        "time": "",
+        "brightness": "",
+        "colour-temp": ""
+    },
+    "night": {
+        "time": "",
+        "brightness": "",
+        "colour-temp": ""
+    }
+}

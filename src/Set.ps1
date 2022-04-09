@@ -1,6 +1,17 @@
-# goto folder with ddm.exe
+param (
+    $Brightness,
+    $Contrast
+)
 
-# "ddm.exe /RestoreLevelDefaults /2:SetContrastLevel 70"
+# # warum funktioniert das nicht?!
+# where.exe ddm
+
+# Go to location of display manager executable (ddm.exe)
+Set-Location C:/ProgramFiles(x86)/Dell/DellDisplayManager
+
+ddm.exe /SetBrightnessLevel $Brightness /SetContrastLevel $Contrast
+
+# Commands
 
 # SetActiveInput [DVI2/HDMI/DP2,etc] - switches active input
 # RestoreFactoryDefaults - restores factory defaults*
