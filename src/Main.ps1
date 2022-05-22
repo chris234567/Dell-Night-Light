@@ -2,7 +2,7 @@
 
 Add-Type -AssemblyName PresentationCore, PresentationFramework
 
-$Xaml = Get-Content ./GUI.xaml
+$Xaml = Get-Content ./src/GUI.xaml
 $Window = [Windows.Markup.XamlReader]::Parse($Xaml)
 
 [xml]$xml = $Xaml
@@ -24,3 +24,10 @@ $xml.SelectNodes("//*[@Name]") | ForEach-Object { Set-Variable -Name $_.Name -Va
 # ---- WIP -----
 
 $Window.ShowDialog()
+
+
+
+# MVC anwenden??
+# Model graphic klasse
+# controller klasse
+# view klasse
