@@ -1,4 +1,0 @@
-enum ColorTemps {
-    warm
-    cold
-}
