@@ -1,33 +1,54 @@
-# GUI was created at https://poshgui.com/
+using module ./src/Controller.ps1
 
 Add-Type -AssemblyName PresentationCore, PresentationFramework
 
 $Xaml = Get-Content ./src/GUI.xaml
-$Window = [Windows.Markup.XamlReader]::Parse($Xaml)
-
 [xml]$xml = $Xaml
 
-$xml.SelectNodes("//*[@Name]") | ForEach-Object { Set-Variable -Name $_.Name -Value $Window.FindName($_.Name) }
+$reader = (New-Object System.Xml.XmlNodeReader $xml)
+$window = [Windows.Markup.XamlReader]::Load($reader)
 
-# ---- WIP -----
+$confirm = $window.FindName("Confirm")
+$cancel = $window.FindName("Cancel")
+$adjust = $window.FindName("Adjust")
 
-# $XML_Node_Reader = (New-Object System.Xml.XmlNodeReader $xml)
-# $xml = [Windows.Markup.XamlReader]::Load($XML_Node_Reader)
-# $Btn = $xml.FindName('Btn_ConnectDialog_Connect')
-# $Txt = $xml.FindName('Txt_ConnectDialog_Input')
+$dayTime = $window.FindName("DayTime")
+$NightTime = $window.FindName("NightTime")
 
+$DayColor = $window.FindName("DayColor")
+$NightColor = $window.FindName("NightColor")
 
-# $Btn_ConnectDialog_Connect.Add_Click({
-#     # hier könnte man das mit den lokalen zeiten implementieren und das xaml verändern
-# })
+$confirm.Add_Click({
+    $window.DialogResult = $true;
+})
 
-# ---- WIP -----
+$cancel.Add_Click({
+    $window.DialogResult = $false;
+})
 
-$Window.ShowDialog()
+$adjust.Add_Click({
+    if ($adjust.IsChecked) {
+        
+        # set text with times
+    }
+})
 
+$window.ShowDialog()
 
+# Validate time - kann man auch gleich in xaml pruefen
+$string -match '^([0-1][0-9]|2[0-3]):[0-5][0-9]$'
 
-# MVC anwenden??
-# Model graphic klasse
-# controller klasse
-# view klasse
+Controller.CreatTask(
+    $dayTime,
+    $NightTime,
+    $DayColor,
+    $NightColor
+)
+
+# --- validate input
+
+# --- close form
+
+# --- after input read out field here ----
+
+# Write-Host $pathTextBox = $window.FindName("boxer").Text

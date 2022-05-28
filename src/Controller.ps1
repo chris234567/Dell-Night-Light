@@ -1,7 +1,27 @@
 using module ./src/ColorTemps.ps1
 
-static class Controller {
-    static [void] Set([string]$Brightness, [ColorTemps]$ColorTemp) {
+class Controller {
+    [void] CreatTask(
+            [string]$DayTime, 
+            [string]$NightTime,
+            [string]$DayColor,
+            [string]$NightColor
+        ) {
+
+        
+            Write-Host '^([0-1][0-9]|2[0-3]):[0-5][0-9]$'
+        # create task with task scheduler
+        
+        # foreach ($time in $DayTime, $NightTime) {
+        #     $Action = New-ScheduledTaskAction -Execute 'pwsh.exe' -Argument '-NonInteractive -NoLogo -NoProfile -File ".\Set.ps1"'  # Hier auch methodenaufruf anstelle von datei moeglich??
+        #     $Trigger = New-ScheduledTaskTrigger -Daily -At $time
+        #     $Settings = New-ScheduledTaskSettingsSet
+        #     $Task = New-ScheduledTask -Action $Action -Trigger $Trigger -Settings $Settings
+        #     Register-ScheduledTask -TaskName 'Set Day' -InputObject $Task -User 'username' -Password 'passhere'
+        # }
+    }    
+    
+    [void] Set([string]$Brightness, [ColorTemps]$ColorTemp) {
         # # warum funktioniert das nicht?!
         # where.exe ddm
 
@@ -36,21 +56,6 @@ static class Controller {
         # Wait X - pause X milliseconds
         # Exit - terminates the program
     }
-
-    static [void] CreatTask([string]$DayTime, [string]$NightTime) {
-
-        check datetime format
-
-        # create task with task scheduler
-        
-        foreach ($time in $DayTime, $NightTime) {
-            $Action = New-ScheduledTaskAction -Execute 'pwsh.exe' -Argument '-NonInteractive -NoLogo -NoProfile -File ".\Set.ps1"'  # Hier auch methodenaufruf anstelle von datei moeglich??
-            $Trigger = New-ScheduledTaskTrigger -Daily -At $time
-            $Settings = New-ScheduledTaskSettingsSet
-            $Task = New-ScheduledTask -Action $Action -Trigger $Trigger -Settings $Settings
-            Register-ScheduledTask -TaskName 'Set Day' -InputObject $Task -User 'username' -Password 'passhere'
-        }
-    }    
 }    
 
 
