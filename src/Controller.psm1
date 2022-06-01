@@ -1,12 +1,7 @@
-using module ./src/ColorTemp.ps1
+using module ./src/ColorTemp.psm1
 
 class Controller {
-    [void] CreatTask(
-            [string]$DayTime, 
-            [string]$NightTime,
-            [ColroTemp]$DayColor,
-            [ColorTemp]$NightColor
-        ) {
+    [void] CreatTask($view) {
 
         
             
