@@ -7,8 +7,6 @@ It supports lining up the schedule with your local sun set and rise time.
 
 ## 1. Requirements analysis 
 
----
-
 ### User Stories
 
 > As a User, i want my monitor to automatically adjust brightness whenever it gets dark, so that i don't have to myself.
@@ -35,15 +33,17 @@ It supports lining up the schedule with your local sun set and rise time.
 
 ## 2. Modelling
 
----
-
 ### Use Cases
+
+---
 
 ![use_case_diagram](./diagrams/use_cases_diagram.png)
 
 Wie soll ein UseCase Diagramm in Tabellenform aussehen??
 
 ### Classdiagram
+
+---
 
 ```mermaid
     classDiagram
@@ -101,6 +101,8 @@ Wie soll ein UseCase Diagramm in Tabellenform aussehen??
 
 ### Objectdiagram
 
+---
+
 ```mermaid
     classDiagram
         class View
@@ -122,6 +124,8 @@ Wie soll ein UseCase Diagramm in Tabellenform aussehen??
 
 ### State-diagram
 
+---
+
 ```mermaid
     stateDiagram
         direction LR
@@ -140,6 +144,8 @@ Wie soll ein UseCase Diagramm in Tabellenform aussehen??
 ```
 
 ### Sequencediagram
+
+---
 
 ```mermaid
     sequenceDiagram
@@ -185,8 +191,6 @@ Wie soll ein UseCase Diagramm in Tabellenform aussehen??
 <br>
 
 ## 3. Implementation
-
----
 
 This program was implemented with Powershell because of its communication capabilites with the Windows operating system. This an essential trait when setting tasks.
 
