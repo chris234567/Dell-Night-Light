@@ -1,22 +1,22 @@
-using module ./src/ColorTemp.psm1
+using module ./ColorTemp.psm1
 
 class Controller {
-    [void] CreatTask($view) {
-
-        
-            
+    [void] CreatTask($model) {
 
         # create task with task scheduler
         
         # retreive brightness & color temp from view??
 
-        # foreach ($time in $DayTime, $NightTime) {
-        #     $Action = New-ScheduledTaskAction -Execute 'pwsh.exe' -Argument '-NonInteractive -NoLogo -NoProfile -File ".\Set.ps1"'  # Hier auch methodenaufruf anstelle von datei moeglich??
-        #     $Trigger = New-ScheduledTaskTrigger -Daily -At $time
-        #     $Settings = New-ScheduledTaskSettingsSet
-        #     $Task = New-ScheduledTask -Action $Action -Trigger $Trigger -Settings $Settings
-        #     Register-ScheduledTask -TaskName 'Set Day' -InputObject $Task -User 'username' -Password 'passhere'
-        # }
+        foreach ($time in 
+            $model.GetDayTime(), 
+            $model.GetNightTime()
+        ) {
+            $Action = New-ScheduledTaskAction -Execute 'pwsh.exe' -Argument '-NonInteractive -NoLogo -NoProfile -File ".\Set.ps1"'  # Hier auch methodenaufruf anstelle von datei moeglich??
+            $Trigger = New-ScheduledTaskTrigger -Daily -At $time
+            $Settings = New-ScheduledTaskSettingsSet
+            $Task = New-ScheduledTask -Action $Action -Trigger $Trigger -Settings $Settings
+            Register-ScheduledTask -TaskName 'Set Day' -InputObject $Task -User 'username' -Password 'passhere'
+        }
     }    
     
     hidden [void] AdjustMonitorSettings (

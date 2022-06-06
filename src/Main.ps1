@@ -1,22 +1,18 @@
-using module ./src/View.psm1
-using module ./src/Controller.psm1
+# using assembly PresentationCore
+# using assembly PresentationFramework
 
-Add-Type -AssemblyName PresentationCore, PresentationFramework
-$view = [View]::new()
+using assembly C:\WINDOWS\Microsoft.Net\assembly\GAC_32\PresentationCore\v4.0_4.0.0.0__31bf3856ad364e35\PresentationCore.dll
+using assembly C:\WINDOWS\Microsoft.Net\assembly\GAC_MSIL\PresentationFramework\v4.0_4.0.0.0__31bf3856ad364e35\PresentationFramework.dll
 
-# if ($view.window.DialogResult) {
+using module ./View.psm1
+using module ./Controller.psm1
+using module ./Model.psm1
+
+$model = [Model]::new()
+$view = [View]::new($model)
+$model.WriteValuesToDataBase()
+
+# if ($view.DialogResult) {
 #     # set windows schedule
-#     Write-Host "Hello World"
+#     # Controller.CreateTask($model)
 # }
-
-
-## datenbank nur da um persistent data zu garantieren 
-
-## beim weg nach draussen datenbank aktualisieren
-
-# for field in view 
-#     database[field] = field.value
-
-
-
-

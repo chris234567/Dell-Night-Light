@@ -21,41 +21,41 @@
 
     <StackPanel Orientation="Horizontal" Margin="10,10,10,10">
         <StackPanel>
-            <CheckBox Name="Adjust">
+            <CheckBox Name="LocalTimesCheckBox">
                 <TextBlock>
                     Adjust set times 
                     <LineBreak/>
                     to local sun rise/set.
                 </TextBlock>
             </CheckBox>
-            <Label Content="Day"/>
-            <Label Content="Night"/>
+            <Label Content="DayTime"/>
+            <Label Content="NightTime"/>
             <Label Content="Colour temp"/>
         </StackPanel>
         
         <StackPanel>
             <Label Content="Set Times"/>
-            <TextBox Name="DayTime" Text="1"/>
-            <TextBox Name="NightTime" Text="2"/>
-            <Button Name="Confirm">Confirm.</Button>
+            <TextBox Name="DayTimeTextBox" Text="1"/>
+            <TextBox Name="NightTimeTextBox" Text="2"/>
+            <Button Name="ConfirmButton" ClickMode="Press">Confirm.</Button>
         </StackPanel>
 
         <StackPanel>
             <Label Content="Brightness"/>
-            <TextBox Name="DayColor" Text="3"/>
-            <TextBox Name="NightColor" Text="4"/>
-            <Button Name="Cancel">Cancel.</Button>
+            <TextBox Name="DayBrightnessTextBox" Text="3"/>
+            <TextBox Name="NightBrightnessTextBox" Text="4"/>
+            <Button Name="CancelButton" ClickMode="Press">Cancel.</Button>
         </StackPanel>
 
-        <StackPanel>
-            <ComboBox Width="120">
+        <!-- <StackPanel>
+            <ComboBox Name="DaytColorComboBox" Width="120">
                 <ComboBoxItem Content="Warm"/>
                 <ComboBoxItem IsSelected="True" Content="Cool"/>
             </ComboBox>
-            <ComboBox Width="120">
+            <ComboBox Name="NightColorComboBox" Width="120">
                 <ComboBoxItem IsSelected="True" Content="Warm"/>
                 <ComboBoxItem Content="Cool"/>
             </ComboBox>
-        </StackPanel>
+        </StackPanel> -->
     </StackPanel>
 </Window>

@@ -1,119 +1,77 @@
-class View {
-    hidden [object] $Window
-    
-    View() {
-        Add-Type -AssemblyName PresentationCore, PresentationFramework
+using module ./ColorTemp.psm1
+using module ./Control.psm1
+using module ./Model.psm1
 
-        [xml]$xml = Get-Content "C:\Users\Chris\VSCodeProjects\Dell-Night-Light\src\GUI.xaml"
-        
+
+class View {
+    hidden [hashtable] $Controls = @{ };
+    hidden [Model] $Model;
+    [bool] $DialogResult;
+    
+    View($model) {
+        $this.Model = $model
+
+        [xml]$xml = Get-Content ./GUI.xaml
+
         $reader = (New-Object System.Xml.XmlNodeReader $xml)
-        $this.window = [Windows.Markup.XamlReader]::Load($reader)
-        $this.window.ShowDialog()
+        $Window = [Windows.Markup.XamlReader]::Load($reader)
+        
+        # Retreive references to controls
+        foreach ($Control in [Control].GetEnumNames()) {
+            $this.Controls.Add($Control, $Window.FindName($Control))
+        }
+
+        # Add handler
+        $this.Controls["ConfirmButton"].Add_Click({
+            $this.DialogResult = $true
+        })
+
+        $this.Controls["CancelButton"].Add_Click({
+            $this.DialogResult = $false
+        })
+
+        # $this.Controls["LocalTimesCheckBox"].Checked += ({
+        #     Write-Host "heeee"
+        #     if ($this.Controls["LocalTimesCheckBox"].IsChecked) {
+        #         $this.Controls["DayTimeTextBox"].Text = "cheeser"
+        #         $this.Controls["NightTimeTextBox"].Text = "cheeser1"
+        #         # set text with times
+        #     }
+        # })
+
+        $this.LoadValues()
+        
+        $Window.Show()
+        
+        # Validate time - kann man auch gleich in xaml pruefen
+
+        # VALIDATE IN XAML CODE??
+
+        # $string -match '^([0-1][0-9]|2[0-3]):[0-5][0-9]$'
+        
+        # --- validate input
+        $this.StoreValues()
+        }
+
+    [void] LoadValues() {
+        $this.Controls["DayTimeTextBox"].Text = $this.Model.GetDayTime()
+        $this.Controls["NightTimeTextBox"].Text = $this.Model.GetNightTime()
+
+        $this.Controls["DayBrightnessTextBox"].Text = $this.Model.GetBrightnessDay()
+        $this.Controls["NightBrightnessTextBox"].Text = $this.Model.GetBrightnessNight()
+
+        # $this.Controls["DayColorComboBox"].Text = $this.Model.GetColorDay()
+        # $this.Controls["NightColorComboBox"].Text = $this.Model.GetColorNight()
     }
 
+    [void] StoreValues() {
+        $this.Model.SetDayTime($this.Controls["DayTimeTextBox"].Text)
+        $this.Model.SetNightTime($this.Controls["NightTimeTextBox"].Text)
+
+        $this.Model.SetBrightnessDay($this.Controls["DayBrightnessTextBox"].Text)
+        $this.Model.SetBrightnessNight($this.Controls["NightBrightnessTextBox"].Text)
+
+        # $this.Model.SetColorDay($this.Controls["DayColorComboBox"].Text)
+        # $this.Model.SetColorNight($this.Controls["NightColorComboBox"].Text)
+    }
 }
-
-
-
-# using module ./ColorTemp.psm1
-
-# # enum Control {
-# #     ConfirmButton
-# #     CancelButton
-# #     LocalTimesCheckBox
-# #     DayTimeTextBox
-# #     NightTimeTextBox
-# #     DayColorTextBox
-# #     NightColorTextBox
-# # }
-
-# class View {
-#     hidden [object] $Window;
-#     hidden [hashtable] $Controls = @{ };
-    
-#     hidden [int] $Brightness;
-#     #hidden [ColorTemp] $ColorTemp;
-    
-#     View() {
-#         Add-Type -AssemblyName PresentationCore, PresentationFramework
-
-#         [xml]$xml = Get-Content ./GUI.xaml
-        
-#         $reader = (New-Object System.Xml.XmlNodeReader $xml)
-#         $this.window = [Windows.Markup.XamlReader]::Load($reader)
-
-#         # $this.LoadControlReferences()
-#         # $this.AddHandler()
-
-#         ## methode um datenbank zu initialisieren falls werte null
-#         # Load (default) database values
-
-#         $this.window.ShowDialog()
-
-#         # Validate time - kann man auch gleich in xaml pruefen
-#         # $string -match '^([0-1][0-9]|2[0-3]):[0-5][0-9]$'
-
-        
-#         # --- validate input
-
-#         # validate warschl am besten in der xml
-#         # mit  '^([0-1][0-9]|2[0-3]):[0-5][0-9]$'
-
-
-#         # --- close form
-
-#         # Write-Host $pathTextBox = $window.FindName("boxer").Text
-
-#     }
-
-#     # [void] LoadControlReferences() {
-#     #     foreach ($Control in [Control].GetEnumNames()) {
-#     #         $this.Controls[$Control] = $this.window.FindName($Control)
-#     #     }
-#     # }
-
-#     [void] AddHandler() {
-
-#         ## on load handler um daten initial reinzuladen
-
-#         ## on confirm button pressed Set brightness usw. fields
-
-#         # ... handler ...
-
-#         # $Controls[Control.ConfirmButton].Add_Click({
-#         #     $this.window.DialogResult = $true;
-#         # })
-
-#         # $Controls[Control.CancelButton].Add_Click({
-#         #     $this.window.DialogResult = $false;
-#         # })
-
-#         # $Controls[Control.LocalTimesCheckBox].Add_Click({
-#         #     if ($adjust.IsChecked) {
-#         #         $this.window
-#         #         # set text with times
-#         # })
-#     }
-
-#     [int] GetBrightness() { 
-#         # hier zugriff auf database
-#         # vielleicht mir generalisierter mehtode?? wird ja in beiden settern/gettern ähnlich verwedent
-#         return $this.Brightness
-#     } 
-    
-#     [void] SetBrightness([int] $value) { 
-#         # hier zugriff auf database
-#         $this.Brightness = $value 
-#     } 
-
-#     [int] GetColorTemp() { 
-#         # hier zugriff auf database
-#         # vielleicht mir generalisierter mehtode?? wird ja in beiden settern/gettern ähnlich verwedent
-#         return $this.ColorTemp
-#     } 
-    
-#     [void] SetColorTemp([int] $value) { 
-#         # hier zugriff auf database
-#         $this.ColorTemp = $value 
-#     } 
-# }
