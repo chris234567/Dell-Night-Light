@@ -206,4 +206,4 @@ See source code in src subfolder.
 ### TODO
 
 - [] make setting of color temperature available
-- [] make setting of windows theme available
+- [x] make setting of windows theme available
