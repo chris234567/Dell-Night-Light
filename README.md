@@ -1,7 +1,6 @@
 <h1 style="color: Grey">🌜 Dell-Night-Light</h1>
 
 Dell Night Light is a tool with wich one can schedule brightness and color temperature changes of ones Dell display.
-It supports lining up the schedule with your local sun set and rise time. 
 
 ## Usage
 
@@ -19,7 +18,7 @@ PS > . ./Main.ps1
 
 > As a User, i want my monitor to automatically adjust brightness whenever it gets dark, so that i don't have to myself.
 
->As a User, i want my computer so spare my eyes with warm colors, when the sun has set.
+> As a User, i want my computer so spare my eyes with warm colors, when the sun has set.
 
 
 ### Requirements
@@ -242,6 +241,7 @@ See source code in src subfolder.
 
 ### TODO
 
+- [ ] implement time adjustment lined up with local sun rise/set times
 - [ ] add input validation (in xaml using validation rules)
 - [ ] make setting of color temperature available
 - [ ] make setting of windows theme available
