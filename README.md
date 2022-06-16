@@ -44,9 +44,9 @@ Hier GIF einfuegn??
 
 ---
 
-![use_case_diagram](./diagrams/use_cases_diagram.png)
+Unfortunately mermaid doesn't support use-case diagrams, so here's a png generated with yEd graph editor.
 
-Wie soll ein UseCase Diagramm in Tabellenform aussehen??
+![use_case_diagram](./diagrams/use_cases_diagram.png)
 
 ### Classdiagram
 
