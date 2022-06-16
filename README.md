@@ -239,7 +239,7 @@ See source code in src subfolder.
 
 ### TODO
 
-- [] implement time adjustment lined up with local sun rise/set times
-- [] add input validation (in xaml using validation rules)
-- [] make setting of color temperature available
-- [] make setting of windows theme available
+- [ ] implement time adjustment lined up with local sun rise/set times
+- [ ] add input validation (in xaml using validation rules)
+- [ ] make setting of color temperature available
+- [ ] make setting of windows theme available
