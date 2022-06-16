@@ -14,8 +14,6 @@ Hier GIF einfuegn??
 
 ## 1. Requirements analysis 
 
----
-
 ### User Stories
 
 > As a User, i want my monitor to automatically adjust brightness whenever it gets dark, so that i don't have to myself.
@@ -42,15 +40,17 @@ Hier GIF einfuegn??
 
 ## 2. Modelling
 
----
-
 ### Use Cases
+
+---
 
 ![use_case_diagram](./diagrams/use_cases_diagram.png)
 
 Wie soll ein UseCase Diagramm in Tabellenform aussehen??
 
 ### Classdiagram
+
+---
 
 ```mermaid
     classDiagram
@@ -113,6 +113,8 @@ Wie soll ein UseCase Diagramm in Tabellenform aussehen??
 
 ### Objectdiagram
 
+---
+
 ```mermaid
     classDiagram
         class View
@@ -153,6 +155,8 @@ Wie soll ein UseCase Diagramm in Tabellenform aussehen??
 
 ### State-diagram
 
+---
+
 ```mermaid
     stateDiagram
         direction LR
@@ -171,6 +175,8 @@ Wie soll ein UseCase Diagramm in Tabellenform aussehen??
 ```
 
 ### Sequencediagram
+
+---
 
 ```mermaid
     sequenceDiagram
