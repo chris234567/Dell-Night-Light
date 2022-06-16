@@ -5,15 +5,13 @@ It supports lining up the schedule with your local sun set and rise time.
 
 ## Usage
 
-Checkout repository. Open command line in /src folder and call with 
+Checkout repository. Open command line in /src folder and start a PowerShell session.
+Then simply execute the script Main.ps1.
+
 ```
-> PowerShell ./Main.ps1
+> PowerShell 
+PS > . ./Main.ps1
 ```
-
-
-
-
-<br> 
 
 ## 1. Requirements analysis 
 
@@ -21,7 +19,7 @@ Checkout repository. Open command line in /src folder and call with
 
 > As a User, i want my monitor to automatically adjust brightness whenever it gets dark, so that i don't have to myself.
 
->As a User, i want my computer so spear my eyes with warm colors, when the sun has set.
+>As a User, i want my computer so spare my eyes with warm colors, when the sun has set.
 
 
 ### Requirements
@@ -244,6 +242,6 @@ See source code in src subfolder.
 
 ### TODO
 
-- [] add input validation (in xaml using validation rules)
-- [] make setting of color temperature available
-- [] make setting of windows theme available
+- [ ] add input validation (in xaml using validation rules)
+- [ ] make setting of color temperature available
+- [ ] make setting of windows theme available
