@@ -3,6 +3,13 @@
 Dell Night Light is a tool with wich one can schedule brightness and color temperature changes of ones Dell display.
 It supports lining up the schedule with your local sun set and rise time. 
 
+## Usage
+
+Checkout repository. Open command line in /src folder and call Main.ps1
+Then input the path to the DellDisplayManager executable on your machine.
+
+Hier GIF einfuegn??
+
 <br> 
 
 ## 1. Requirements analysis 
@@ -51,12 +58,14 @@ Wie soll ein UseCase Diagramm in Tabellenform aussehen??
         
         class View
         <<GUI>> View
-        View : +View() void
-        View : -LoadValues() void
-        View : -StoreValues() void
         View : -Model Model {mandatory} 
-        View : -Bool DialogResult {mandatory} 
         View : -Hashtable~Control~ Controls {mandatory}
+        View : +View() void
+        View : +LoadValues() void
+        View : +StoreValues() void
+        View : -AddHandler(window#58;System.Windows.Window) void
+        View : -RetreiveReferences(window#58;System.Windows.Window) void
+
         class Control {
             <<enumeration>>
             ConfirmButton
@@ -68,7 +77,9 @@ Wie soll ein UseCase Diagramm in Tabellenform aussehen??
             NightBrightnessTextBox
             DayColorComboBox
             NightColorComboBox
+            DDMPath
         }
+
         class Main
 
         class Model
@@ -76,21 +87,22 @@ Wie soll ein UseCase Diagramm in Tabellenform aussehen??
         Model : -PSCustomObject Store {mandatory}
         Model : +Model() void
         Model : +WriteValuesToDataBase() void
+        Model : +GetDDMPath() string
+        Model : +SetDDMPath() void
         Model : +GetDayTime() string
-        Model : -SetDayTime() void
+        Model : +SetDayTime() void
         Model : +GetNightTime() string
-        Model : -SetNightTime() void
+        Model : +SetNightTime() void
         Model : +GetBrightnessDay() int
-        Model : -SetBrightnessDay() void
-        Model : +GetBrightnessNight() string
-        Model : -SetBrightnessNight() int
+        Model : +SetBrightnessDay() void
+        Model : +GetBrightnessNight() int
+        Model : +SetBrightnessNight() void
         
+        class Controller
+        <<BusinessLogic>> Controller
+        Controller : +CreateTask() void
+        Controller : +GetLocalSunSetAndRiseTimes() System.Tuple
         
-        class Controller{
-            <<BusinessLogic>>
-            Controller : +CreateTask() void
-            Controller : +AdjustMonitorSettings() void
-        }
 
         View ..> Model : <<<read>read>>
         View "1" --o "1" Main
@@ -104,12 +116,31 @@ Wie soll ein UseCase Diagramm in Tabellenform aussehen??
 ```mermaid
     classDiagram
         class View
-        View : Controls = 
-        View : Model = Model
-        View : DialogResult = True
+        View : Controls = {
+        View : #160;[DayTimeTextBox]#58; [TextBox]
+        View : #160;[NightTimeTextBox]#58; [TextBox]
+        View : #160;[DayBrightnessTextBox]#58; [TextBox]
+        View : #160;[NightBrightnessTextBox]#58; [TextBox]
+        View : #160;[LocalTimesCheckBox]#58; [CheckBox]
+        View : #160;[DDMPath]#58; [TextBox]
+        View : #160;[ConfirmButton]#58; [Button]
+        View : #160;[CancelButton]#58; [Button]
+        View : }
+        View : Model = [Model]
 
         class Model
-        Model : Store = { day = { time = "0800", brightness = 50 }, night = { time = "0800", brightness = 50 }}
+        Model : Store = { 
+        Model : #160;is_day = false, 
+        Model : #160;ddm_path = "C#58;/Desktop", 
+        Model : #160;day = { 
+        Model : #160;#160;time = "08#58;00", 
+        Model : #160;#160;brightness = 75
+        Model : #160;}, 
+        Model : #160;night = {  
+        Model : #160;#160;time = "22#58;00", 
+        Model : #160;#160;brightness = 10 
+        Model : #160;}  
+        Model : }  
 
         class Controller
 
@@ -177,7 +208,7 @@ Wie soll ein UseCase Diagramm in Tabellenform aussehen??
 
 ```mermaid
     sequenceDiagram
-        loop daily
+        loop bi-daily
             Windows ->> Task: Start
         end 
 ```
@@ -188,9 +219,9 @@ Wie soll ein UseCase Diagramm in Tabellenform aussehen??
 
 ---
 
-This program was implemented with Powershell because of its communication capabilites with the Windows operating system. This an essential trait when setting tasks.
+This program was implemented with Powershell because of its communication capabilites with the Windows operating system and therefore with the Task Scheduler. 
 
-Currently the user data is stored in a JSON file, alternatively it could be implemented bz a DataBase like MySQL.
+Currently the user data is stored in a JSON file, alternatively it could be implemented with a DataBase like MySQL.
 
 See source code in src subfolder. 
 
@@ -199,11 +230,11 @@ See source code in src subfolder.
 - Dell Display Manager executable
 - Powershell
 - assemblies: presentationframework, presentation
-- Admin rights??
 
 --- 
 
 ### TODO
 
+- [] add input validation (in xaml using validation rules)
 - [] make setting of color temperature available
 - [] make setting of windows theme available

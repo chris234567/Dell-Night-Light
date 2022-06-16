@@ -12,6 +12,14 @@ class Model {
         $this.Store | ConvertTo-Json | Out-File ./store.json
     }
 
+    [string] GetDDMPath() {
+        return $this.Store.display_manager_path
+    }
+
+    hidden [void] SetDDMPath([string] $value) { 
+        $this.Store.display_manager_path = $value 
+    }
+
     [string] GetDayTime() { 
         return $this.Store.day.time
     } 

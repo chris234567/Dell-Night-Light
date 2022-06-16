@@ -19,43 +19,58 @@
         </Style>
     </Window.Resources>
 
-    <StackPanel Orientation="Horizontal" Margin="10,10,10,10">
-        <StackPanel>
-            <CheckBox Name="LocalTimesCheckBox">
-                <TextBlock>
-                    Adjust set times 
-                    <LineBreak/>
-                    to local sun rise/set.
+    <StackPanel>
+        <StackPanel Orientation="Horizontal" Margin="10,10,10,10">
+            <StackPanel>
+                <CheckBox Name="LocalTimesCheckBox">
+                    <TextBlock>
+                        Adjust set times 
+                        <LineBreak/>
+                        to local sun rise/set.
+                    </TextBlock>
+                </CheckBox>
+                <Label Content="DayTime"/>
+                <Label Content="NightTime"/>
+                <Label Content="Colour temp"/>
+            </StackPanel>
+            
+            <StackPanel>
+                <Label Content="Set Times"/>
+                <TextBox Name="DayTimeTextBox" Text="1"/>
+                <TextBox Name="NightTimeTextBox" Text="2"/>
+                <Button Name="ConfirmButton" ClickMode="Press">Confirm.</Button>
+            </StackPanel>
+
+            <StackPanel>
+                <Label Content="Brightness"/>
+                <TextBox Name="DayBrightnessTextBox" Text="3"/>
+                <TextBox Name="NightBrightnessTextBox" Text="4"/>
+                <Button Name="CancelButton" ClickMode="Press">Cancel.</Button>
+            </StackPanel>
+
+
+            <!-- <StackPanel>
+                <ComboBox Name="DaytColorComboBox" Width="120">
+                    <ComboBoxItem Content="Warm"/>
+                    <ComboBoxItem IsSelected="True" Content="Cool"/>
+                </ComboBox>
+                <ComboBox Name="NightColorComboBox" Width="120">
+                    <ComboBoxItem IsSelected="True" Content="Warm"/>
+                    <ComboBoxItem Content="Cool"/>
+                </ComboBox>
+            </StackPanel> -->
+        </StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <Label>DDMPath</Label>
+            <TextBox Name="DDMPath"></TextBox>
+        </StackPanel>
+
+        <Popup Name="myPopup" IsOpen="{Binding IsChecked, ElementName=LocalTimesCheckBox}">
+            <Border BorderThickness="1">
+                <TextBlock Name="myPopupText" Background="White" Foreground="Red" Padding="30">
+                    Watch out! This feature is still under construction.
                 </TextBlock>
-            </CheckBox>
-            <Label Content="DayTime"/>
-            <Label Content="NightTime"/>
-            <Label Content="Colour temp"/>
-        </StackPanel>
-        
-        <StackPanel>
-            <Label Content="Set Times"/>
-            <TextBox Name="DayTimeTextBox" Text="1"/>
-            <TextBox Name="NightTimeTextBox" Text="2"/>
-            <Button Name="ConfirmButton" ClickMode="Press">Confirm.</Button>
-        </StackPanel>
-
-        <StackPanel>
-            <Label Content="Brightness"/>
-            <TextBox Name="DayBrightnessTextBox" Text="3"/>
-            <TextBox Name="NightBrightnessTextBox" Text="4"/>
-            <Button Name="CancelButton" ClickMode="Press">Cancel.</Button>
-        </StackPanel>
-
-        <!-- <StackPanel>
-            <ComboBox Name="DaytColorComboBox" Width="120">
-                <ComboBoxItem Content="Warm"/>
-                <ComboBoxItem IsSelected="True" Content="Cool"/>
-            </ComboBox>
-            <ComboBox Name="NightColorComboBox" Width="120">
-                <ComboBoxItem IsSelected="True" Content="Warm"/>
-                <ComboBoxItem Content="Cool"/>
-            </ComboBox>
-        </StackPanel> -->
+            </Border>
+        </Popup>
     </StackPanel>
 </Window>

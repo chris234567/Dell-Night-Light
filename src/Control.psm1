@@ -6,6 +6,7 @@ enum Control {
     NightTimeTextBox
     DayBrightnessTextBox
     NightBrightnessTextBox
-    DayColorComboBox
-    NightColorComboBox
+    DDMPath
+    # DayColorComboBox
+    # NightColorComboBox
 }
