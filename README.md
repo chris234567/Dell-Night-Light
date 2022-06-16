@@ -16,7 +16,7 @@ Checkout repository. Open command line in /src folder and call with
 
 > As a User, i want my monitor to automatically adjust brightness whenever it gets dark, so that i don't have to myself.
 
->As a User, i want my computer so spear my eyes with warm colors, when the sun has set.
+> As a User, i want my computer so spare my eyes with warm colors, when the sun has set.
 
 
 ### Requirements
