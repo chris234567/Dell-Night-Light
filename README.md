@@ -5,10 +5,13 @@ It supports lining up the schedule with your local sun set and rise time.
 
 ## Usage
 
-Checkout repository. Open command line in /src folder and call Main.ps1
-Then input the path to the DellDisplayManager executable on your machine.
+Checkout repository. Open command line in /src folder and call with 
+```
+> PowerShell ./Main.ps1
+```
 
-Hier GIF einfuegn??
+
+
 
 <br> 
 
