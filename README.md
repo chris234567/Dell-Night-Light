@@ -161,13 +161,13 @@ Unfortunately mermaid doesn't support use-case diagrams, so here's a png generat
     stateDiagram
         direction LR
 
-        state Initial
+        state Configuration
         state Decision <<choice>>
         state "Process input" as Processinput
 
-        [*] --> Initial : Startup
-        Initial --> Initial : User input
-        Initial --> Decision
+        [*] --> Configuration : Startup
+        Configuration --> Configuration : User input
+        Configuration --> Decision : End Dialog
         Decision --> Processinput : Confirm
         Decision --> [*] : Cancel
         Processinput --> [*] : Set task
@@ -184,7 +184,8 @@ Unfortunately mermaid doesn't support use-case diagrams, so here's a png generat
     participant App
     participant DataBase
     participant Windows
-
+    
+    
     User ->>+ App : Startup
     App ->>+ DataBase : Query current settings
     DataBase -->>- App : Settings 
@@ -192,30 +193,37 @@ Unfortunately mermaid doesn't support use-case diagrams, so here's a png generat
 
     loop
         User ->> App : Input
+        App -->> User : 
     end
 
     User ->> App : End dialog
     App ->> App : Read out input fields
 
     alt Window.DialogResult = True
-        App ->> DataBase : Write data
+        App ->>+ DataBase : Write data
+        DataBase -->>- App : 
         App ->>+ Windows : Query for task existence
         Windows -->>- App : Yes/No
 
         alt task_exists = True
             App ->>+ Windows : Delete task
-            Windows ->>- Windows : Remove task
+            Windows ->> Windows : Remove task
+            Windows -->>- App : Deletion successful/failed
         end
 
-        App ->>- Windows : Create task
+        App ->>+ Windows : Create task
+        Windows -->>- App : Creation successful/failed
     end
-
+    
+    App -->>- User : End dialog
+    
 ```
 
 ```mermaid
     sequenceDiagram
         loop bi-daily
-            Windows ->> Task: Start
+            Windows ->>+ Task : Start
+            Task ->>- Windows : successfull/failed
         end 
 ```
 
