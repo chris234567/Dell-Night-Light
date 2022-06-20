@@ -54,7 +54,7 @@ PS > . ./Main.ps1
 | Input information | Day time, night time |
 | Preconditions | The input data must be in a parsable date time format, <br> the application must have privilages required to interact with the windows task scheduler |
 | Postconditions | The GUI dialog was ended positively, the setting of a task was successful |
-| Essential steps | 1. Input data <br> 2. Parse data <br> 3. Confirm dialog <br> 4. Write data to Database <br> 5. Schedule task |
+| Essential steps | 1. Input data <br> 2. Parse data <br> 3. Confirm dialog <br> 4. Write data to Database <br> 5. Create task <br> 6. Check for task existence <br> 7. Schedule task |
 | Variants | 1a. Input data automatically by selecting the option to align task schedule to local sun rise/set times |
 
 Unfortunately mermaid doesn't support use-case diagrams, so here's a png generated with yEd graph editor.
