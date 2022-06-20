@@ -48,12 +48,12 @@ PS > . ./Main.ps1
 |:---|:---|
 | Type | GUI Interaction |
 | Description | A user inputs times and ends the dialog by confirming, thereafter a scheduled task is set |
-| Trigger | A user wants to schedule a task |
+| Trigger | A user wants his monitor to dim and brighten by a set schedule |
 | Result | Time data is saved to the Database and a windows scheduled task is set |
 | Actors | User |
 | Input information | Day time, night time |
-| Preconditions | The input data must be in a parsable date time format, <br> the application must have privilages needed to interact with the windows task scheduler |
-| Postconditions | The GUI dialog was ended positively and the setting of a task was successful |
+| Preconditions | The input data must be in a parsable date time format, <br> the application must have privilages required to interact with the windows task scheduler |
+| Postconditions | The GUI dialog was ended positively, the setting of a task was successful |
 | Essential steps | 1. Input data <br> 2. Parse data <br> 3. Confirm dialog <br> 4. Write data to Database <br> 5. Schedule task |
 | Variants | 1a. Input data automatically by selecting the option to align task schedule to local sun rise/set times |
 
