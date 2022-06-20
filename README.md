@@ -210,6 +210,7 @@ Unfortunately mermaid doesn't support use-case diagrams, so here's a png generat
     end
 
     User ->> App : End dialog
+    App -->> User
     App ->> App : Read out input fields
 
     alt Window.DialogResult = True
@@ -228,7 +229,7 @@ Unfortunately mermaid doesn't support use-case diagrams, so here's a png generat
         Windows -->>- App : Creation successful/failed
     end
     
-    App -->>- User : End dialog
+    App -->>- User
     
 ```
 
